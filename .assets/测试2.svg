@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" data-idraw-canvas="1" data-idraw-version="1">
+  <defs>
+    <marker id="idraw-arrow-8f94a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" markerUnits="strokeWidth" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8f94a3"/>
+    </marker>
+    <marker id="idraw-arrow-start-8f94a3" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" markerUnits="strokeWidth" orient="auto">
+      <path d="M10,0 L0,5 L10,10 z" fill="#8f94a3"/>
+    </marker>
+  </defs>
+  <rect data-idraw-page="1" x="0" y="0" width="1600" height="1000" fill="#ffffff"/>
+  <g data-idraw-layer="edges">
+    <path data-idraw-edge="e1" data-idraw-from-node="n1" data-idraw-from-anchor="s" data-idraw-to-node="n2" data-idraw-to-anchor="n" data-idraw-routing="orthogonal" data-idraw-arrow="end" d="M768.18,260.78 L768.18,337.3 L768.18,413.82" fill="none" stroke="#8f94a3" stroke-width="7" marker-end="url(#idraw-arrow-8f94a3)"/>
+  </g>
+  <g data-idraw-layer="nodes">
+    <g data-idraw-node="n1" data-idraw-shape="rect" data-idraw-x="634.64" data-idraw-y="145.42" data-idraw-w="267.08" data-idraw-h="115.36" data-idraw-align="center" data-idraw-valign="middle" data-idraw-radius="8" transform="translate(634.64 145.42)">
+      <rect x="0" y="0" width="267.08" height="115.36" fill="#2a2c35" stroke="#8f94a3" stroke-width="1.5"/>
+      <text data-idraw-text="" x="0" y="0" fill="none"></text>
+    </g>
+    <g data-idraw-node="n2" data-idraw-shape="rect" data-idraw-x="634.64" data-idraw-y="413.82" data-idraw-w="267.08" data-idraw-h="115.36" data-idraw-align="center" data-idraw-valign="middle" data-idraw-radius="8" transform="translate(634.64 413.82)">
+      <rect x="0" y="0" width="267.08" height="115.36" fill="#2a2c35" stroke="#8f94a3" stroke-width="1.5"/>
+      <text data-idraw-text="" x="0" y="0" fill="none"></text>
+    </g>
+  </g>
+</svg>
