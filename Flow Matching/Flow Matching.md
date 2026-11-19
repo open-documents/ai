@@ -20,25 +20,29 @@ $$
 $$
 \left\{
 \begin{aligned}
-&\quad
-  \frac{d}{dt}\phi_t(x)=v_t\bigl(\phi_t(x)\bigr)
-  \qquad \phi_0(x)=x\\[6pt]
-&\text{第 2 步（图二：}v_t(x)=x\text{ 代入）：}\quad
-  \frac{d}{dt}\phi_t(x)=\phi_t(x)
-  \qquad\text{（图一左半部分）}
+\quad\frac{d}{dt}\phi_t(x)&=v_t\bigl(\phi_t(x)\bigr)\\[2pt]
+\\
+\phi_0(x)&=x
 \end{aligned}
 \right.
 
+\quad
+\;\overset{\text{带入 }v_t(x)}{\Longrightarrow}\;
+\quad
 
-\;\Longrightarrow\;
+\left\{
 \begin{aligned}
-&\text{第 3 步（求解，得图一右半部分）：}\\[3pt]
-&\frac{d\phi_t(x_0)}{\phi_t(x_0)}=dt
- \;\Longrightarrow\;
- \ln\phi_t(x_0)=t+C
- \;\xrightarrow{\ \phi_0(x_0)=x_0\ }\;
- \phi_t(x_0)=e^{t}x_0
+\quad \frac{d}{dt}\phi_t(x)&=\phi_t(x)\\[2pt]
+\\
+\phi_0(x)&=x
 \end{aligned}
+\right.
+
+\quad
+\;\Longrightarrow\;
+\quad
+
+\phi_t(x)=e^{t}x
 $$
 
 $$
