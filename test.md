@@ -17,10 +17,6 @@ $$
 
 这是 a
 
-![画布](.assets/测试123.svg)
-
-
-
 $$ 
 a
 
@@ -30,8 +26,10 @@ $$
 
 
 
-| a | a | a |
+| abc | abc | abc |
 | :---: | :---: | :---: |
-| a | a | a |
-| a | a | a |
+| abc | abc | abc |
+| abc | abc | abc |
+
+
 
