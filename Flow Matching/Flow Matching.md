@@ -1,4 +1,10 @@
-# 等式 (4) 的两个直观例子
+阿
+
+# Continuous Normalizing Flows（CNF）
+阿
+
+
+## 例子
 
 论文中的 push-forward 密度变换公式：
 
