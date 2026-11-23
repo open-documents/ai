@@ -11,6 +11,14 @@ $$
 \phi_0(x) &= x
 \end{aligned}
 $$
+2、前推公式
+
+$$
+\begin{aligned}
+p_t &= [\phi_t]_* p_0   \\
+[\phi_t]_* p_0(x) &= p_0(\phi_t^{-1}(x)) \det \left[ \frac{\partial \phi_t^{-1}}{\partial x}(x) \right]
+\end{aligned}
+$$
 
 
 ## 例子
