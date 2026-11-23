@@ -1,7 +1,16 @@
 阿
 
 # Continuous Normalizing Flows（CNF）
-阿
+本章介绍前置知识 CNF（对应论文第2章）。
+
+1、ODE
+
+$$
+\begin{aligned}
+\frac{d}{dt}\phi_t(x) &= v_t(\phi_t(x)) \\
+\phi_0(x) &= x
+\end{aligned}
+$$
 
 
 ## 例子
