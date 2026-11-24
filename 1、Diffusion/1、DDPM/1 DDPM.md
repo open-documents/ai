@@ -1,12 +1,9 @@
-> 论文：Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. arXiv:2006.11239, 2020.
+> 论文：Denoising Diffusion Probabilistic Models
 
-贡献：
+本文介绍生成领域的一种重要范式：扩散模型。该论文并非首次提出扩散模型，但是其算法DDPM是扩散模型被广泛采用的一个奠基之作。
 
-- 展示了DDPM和SM（Score Matching）之间的关系。
--
+# 一、扩散模型
 
-
-等式
 
 $$
 
