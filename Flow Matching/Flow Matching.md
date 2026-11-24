@@ -8,33 +8,22 @@
 $$
 \begin{aligned}
 \frac{d}{dt}\phi_t(x) &= v_t(\phi_t(x)) \\
+\\
 \phi_0(x) &= x
 \end{aligned}
 $$
-2、前推公式
+2、前推（push-forward）公式
 
 $$
 \begin{aligned}
 p_t &= [\phi_t]_* p_0   \\
+\\
 [\phi_t]_* p_0(x) &= p_0(\phi_t^{-1}(x)) \det \left[ \frac{\partial \phi_t^{-1}}{\partial x}(x) \right]
 \end{aligned}
 $$
 
 
 ## 例子
-
-论文中的 push-forward 密度变换公式：
-
-$$
-[\phi_t]_* p_0(x)
-= p_0\!\left(\phi_t^{-1}(x)\right)
-  \det\!\left[\frac{\partial \phi_t^{-1}(x)}{\partial x}\right]
-\tag{4}
-$$
-
----
-
-## 例子一：一维缩放流 + 标准高斯（真正由 ODE 生成）
 
 ### 1. 设定
 
@@ -76,12 +65,10 @@ $$
 
 目标：求 $t$ 时刻密度 $p_t(x)$。
 
-| 部件 | 计算 |
+| 部件阿阿阿 | 计算阿阿 |
 | --- | --- |
-| ① 目标点 $x$ | 任取一个数，如 $x=1$ |
-| ② 回溯源点 $\phi_t^{-1}(x)$ | ODE 反解：$\phi_t^{-1}(x)=e^{-t}x$ |
-| ③ 源点密度 $p_0(\phi_t^{-1}(x))$ | $p_0(e^{-t}x)=\dfrac{1}{\sqrt{2\pi}}\exp\!\left(-\dfrac{e^{-2t}x^2}{2}\right)$ |
-| ④ 体积因子 $\det\!\left[\partial\phi_t^{-1}(x)/\partial x\right]$ | 一维时就是导数：$e^{-t}$ |
+| ① 目标点 $x$阿 | 任取一个数，如 $x=1$ |
+| ② 回溯源点 $\phi_t^{-1}(x)$ | ODE 反解：$\phi_t^{-1}(x)=e^{-t}x$阿阿 |
 
 ### 3. 代入式 (4)
 
