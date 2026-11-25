@@ -1,5 +1,7 @@
 
 
+
+本文介绍生成模型中的一种重要范式：流匹配
 # Continuous Normalizing Flows（CNF）
 本章介绍前置知识 CNF（对应论文第2章），包含ODE公式、push-forward公式。
 
