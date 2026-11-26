@@ -7,21 +7,18 @@
 
 $$
 \begin{align}
-p(x_{0:T})                                                                                       \nonumber
-&= p(x_{0:T-1}|x_T) \cdot p(x_T)                                                   \nonumber      \\
-&= p(x_{0:T-2}|x_{T-1},x_{T}) \cdot p(x_{T-1}|x_T) \cdot p(x_T)      \nonumber      \\
-& \ ...                  \nonumber     \\
-&= p(x_0|x_{1:T}) \cdot p(x_1|x_{2:T}) \cdot p(x_2|x_{3:T})...p(x_{T-1}|x_T) \cdot p(x_T)                           \nonumber    \\
-&= p(x_0|x_1) \cdot p(x_1|x_2) \cdot p(x_2|x_3)...p(x_{T-2}|x_{T-1}) \cdot p(x_{T-1}|x_T) \cdot p(x_T)  \ \ \ （逆向马尔可夫）    \nonumber    \\
-&= p(x_T)\prod_{t=1}^{T}p(x_{t-1}|x_{t})
+p(x_{0:T})  = p(x_T)\prod_{t=1}^{T}p(x_{t-1}|x_{t})
 \end{align}
 $$
+其中：
 
 $$
-
+\begin{aligned}
+x_{0:T} = (x_0, x_1, ..., x_T)
+\\
+p(x_T) = N(x_T; 0,I)
+\end{aligned}
 $$
-
-
 
 
 
@@ -44,3 +41,16 @@ $$
 
 # 附录
 ## 1、证明等式1
+$$
+\begin{align}
+p(x_{0:T})                                                                                       \nonumber
+&= p(x_{0:T-1}|x_T) \cdot p(x_T)                                                   \nonumber      \\
+&= p(x_{0:T-2}|x_{T-1},x_{T}) \cdot p(x_{T-1}|x_T) \cdot p(x_T)      \nonumber      \\
+& \ ...                  \nonumber     \\
+&= p(x_0|x_{1:T}) \cdot p(x_1|x_{2:T}) \cdot p(x_2|x_{3:T})...p(x_{T-1}|x_T) \cdot p(x_T)                           \nonumber    \\
+&= p(x_0|x_1) \cdot p(x_1|x_2) \cdot p(x_2|x_3)...p(x_{T-2}|x_{T-1}) \cdot p(x_{T-1}|x_T) \cdot p(x_T)  \ \ \ （逆向马尔可夫）    \nonumber    \\
+&= p(x_T)\prod_{t=1}^{T}p(x_{t-1}|x_{t})
+\end{align}
+$$
+
+2、
