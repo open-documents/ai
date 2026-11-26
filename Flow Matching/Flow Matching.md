@@ -39,11 +39,11 @@ $$
 **2、push-forward（前推）公式**
 
 $$
-\begin{aligned}
-p_t &= [\phi_t]_* p_0   \\
-\\
+\begin{align}
+p_t &= [\phi_t]_* p_0   \\ 
+ \nonumber  \\  
 [\phi_t]_* p_0(x) &= p_0(\phi_t^{-1}(x)) \det \left[ \frac{\partial \phi_t^{-1}}{\partial x}(x) \right]
-\end{aligned}
+\end{align}
 $$
 
 
@@ -144,41 +144,30 @@ $$
 
 这正是"变量替换 + 质量守恒"的含义：空间的长度被拉伸了 2 倍，密度就必须缩小到 $1/2$。高斯峰值从 $\mathcal{N}(0,1)$ 的 $0.3989$ 降到 $\mathcal{N}(0,4)$ 的 $0.1995$，恰好减半。
 
-### 5. 直觉对照
 
-```text
-     t = 0 源                                 t 时刻
-   p_0 = N(0,1)                          p_t = N(0, e^{2t})
-      ▁▄█▄▁                    ──►           ▁▄▄█▄▄▁   （变宽、变矮）
-      x_0 ──── 流拉伸 e^t 倍 ────►  x = e^t x_0
-```
 
-- 要问 $x$ 处的密度 → 先回溯到源点 $e^{-t}x$ → 查 $p_0$ → 再乘体积因子 $e^{-t}$。
-- 流把体积放大 $e^t$ 倍 ⇒ 密度乘 $e^{-t}$；而 $e^{-t}=1/\det(\partial\phi_t/\partial x)$，与"正、逆雅可比互为倒数"一致。
+# 条件速度场推出边缘速度场
 
-### 6. 矩阵版本
 
-同样的事情在二维：若 $\phi(x_0)=Ax_0$，$A=\operatorname{diag}(2,3)$，则
+
+
+# FM && CFM
+流匹配（Flow Matching）的损失函数为：
 
 $$
-\det\!\left[\frac{\partial\phi^{-1}(x)}{\partial x}\right]
-= \det(A^{-1})
-= \frac{1}{2\cdot 3}
-= \frac{1}{6}.
+\mathcal{L}_{\text{FM}}(\theta) = \mathbb{E}_{t, p_t(x)} \|v_t(x) - u_t(x)\|^2, \tag{5}
 $$
 
-$p_0=\mathcal{N}(0,I)$ 时 $p_t=\mathcal{N}(0,AA^\top)$，分布被拉伸成 $2\times 3$ 的椭圆，密度处处乘以 $1/6$。
+1、直接训练有两个问题：
 
-若 $A=\operatorname{diag}(2,1/2)$，$\det=1$：一个方向拉宽、一个方向压窄，面积不变，密度不变——这就是"$\det$ 只管体积，不管形状"。
-
-### 小结
-
-式 (4) 在这个例子里就是：$\mathcal{N}(0,1)$ 被拉伸 $e^t$ 倍后，密度变成 $\mathcal{N}(0,e^{2t})$；公式里的 $p_0(e^{-t}x)$ 负责"查源点密度"，$e^{-t}$ 负责"按体积变化打折"，两者相乘恰好给出正确的密度。
+- 无法抽样：因为没有$p_t(x)$的解析式；
+- 没有标签：因为没有速度场$u_t(x)$的解析式；
 
 
+
+为此该论文提出了替代损失函数CFM：
 
 $$
-d/dt φ_t^u(x) = u_t(φ_t^u(x)),     [φ_t^u]_* p_0 = p_t
-
+\mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t, q(x_1), p_t(x|x_1)} \|v_t(x) - u_t(x|x_1)\|^2,
 $$
 
