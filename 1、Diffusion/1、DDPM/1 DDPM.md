@@ -3,16 +3,9 @@
 本文介绍生成领域的一种重要范式：扩散模型。该论文并非首次提出扩散模型，但是其算法DDPM是扩散模型被广泛采用的一个奠基之作。
 
 # 一、扩散模型
-扩散模型是一种潜变量模型，并不直接对初始数据集分布 $p(x_0)$ 进行建模，而是引入一条逐步加噪的潜变量链 $x_1, ..., x_T$，通过联合分布 $$
-> 论文：Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. arXiv:2006.11239, 2020.
-
-贡献：
-
-- 展示了DDPM和SM（Score Matching）之间的关系。
--
+扩散模型是一种潜变量模型，并不直接对初始数据集分布 $p(x_0)$ 进行建模，而是引入一条逐步加噪的潜变量链 $x_1, ..., x_T$，通过联合分布$$
 
 
-等式
 
 $$
 \begin{aligned}
