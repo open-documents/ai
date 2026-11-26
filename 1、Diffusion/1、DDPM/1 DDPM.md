@@ -4,6 +4,8 @@
 
 首先定义
 
+$L=\int q(x_0)logp(x_0)dx_0$ （来自Deep Unsupervised Learning using Nonequilibrium Thermodynamics. 2015
+
 # 一、扩散模型
 扩散模型是一种潜变量模型，并不直接对初始数据集分布$p(x_0)$建模，而是通过定义一个前向加噪的马尔可夫链，并对具备马尔可夫链性质反向去噪过程建模，从而构建生成过程中的联合分布。
 
@@ -69,4 +71,25 @@ p(x_{0:T})                                                                      
 \end{align}
 $$
 
-2、
+2、损失函数
+
+首先，根据全概率公式，有：
+
+$$
+\begin{aligned}
+p(x_0)                              
+&= \int p(x_{0:T})dx_{1:T}                                                               \\
+&= \int p(x_{0:T}) \frac{q(x_{1:T} | x_0)}{q(x_{1:T} | x_0)}dx_{1:T}      \\
+&= \int q(x_{1:T} | x_0) \frac{p(x_{0:T})}{q(x_{1:T} | x_0)}dx_{1:T}      \\
+&= \int q(x_{1:T} | x_0)p(x_T)\prod_{t=1}^{T}\frac{p(x_{t-1}|x_{t})}{q(x_t|x_{t-1})}dx_{1:T}
+\end{aligned}
+$$
+基于此，损失函数：
+
+$$
+\begin{aligned}
+L
+&= \int q_\theta(x_0)logp(x_0)dx_0   \\
+&= \int q_\theta(x_0) \cdot log[\int q(x_{1:T} | x_0)p(x_T) \cdot \prod_{t=1}^{T}\frac{p(x_{t-1}|x_{t})}{q(x_t|x_{t-1})}dx_{1:T}]dx_0
+\end{aligned}
+$$
