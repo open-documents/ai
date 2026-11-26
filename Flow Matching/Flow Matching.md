@@ -147,10 +147,28 @@ $$
 
 
 # 条件速度场推出边缘速度场
+设定条件概率密度$p_t(x|x_1)$，满足：
+
+- t = 0时：$p_0(x|x_1)=p(x)$；
+- t = 1时：粒子集中在中心为$x_1$的一片极小区域，如$p_1(x|x_1) = \mathcal{N}(x|x_1, \sigma^2 I)$，其中标准差极小；
+
+那么，有：
+
+$$
+p_t(x) = \int p_t(x|x_1)q(x_1)dx_1
+\\
+p_1(x) = \int p_1(x|x_1)q(x_1)dx_1 \approx q(x)
+$$
 
 
 
+进一步：
 
+$$
+u_t(x) = \int u_t(x|x_1) \frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1, \tag{8}
+$$
+
+即条件速度场能推出
 # FM && CFM
 流匹配（Flow Matching）的损失函数为：
 
@@ -171,3 +189,8 @@ $$
 \mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t, q(x_1), p_t(x|x_1)} \|v_t(x) - u_t(x|x_1)\|^2,
 $$
 
+可以证明，CFM和FM关于模型参数的梯度一致，即优化CFM即在优化FM。
+
+
+
+# 构造路径
