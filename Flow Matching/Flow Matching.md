@@ -168,7 +168,7 @@ $$
 u_t(x) = \int u_t(x|x_1) \frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1, \tag{8}
 $$
 
-即条件速度场能推出
+即条件速度场能推出边缘速度场。
 # FM && CFM
 流匹配（Flow Matching）的损失函数为：
 
@@ -194,3 +194,54 @@ $$
 
 
 # 构造路径
+构造仿射路径：
+
+$$
+\psi_t(x) = \sigma_t(x_1)x + \mu_t(x_1)
+$$
+
+由ODE公式有：
+
+$$
+\frac{d}{dt} \psi_t(x) = u_t(\psi_t(x)|x_1)  
+\quad 
+\Rightarrow
+\quad
+u_t(x|x_1) = \frac{\sigma'_t(x_1)}{\sigma_t(x_1)} (x - \mu_t(x_1)) + \mu'_t(x_1)
+$$
+
+进一步，做重参数化，损失函数变为：
+
+$$
+\mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t, q(x_1), p(x_0)} \left\| v_t(\psi_t(x_0)) - \frac{d}{dt}\psi_t(x_0) \right\|^2
+$$
+
+
+
+## OT路径
+构造仿射路径：
+
+$$
+\mu_t(x) = tx_1, \text{ and } \sigma_t(x) = 1 - (1 - \sigma_{\min})t  \Rightarrow \psi_t(x) = (1 - (1 - \sigma_{\min})t)x + tx_1
+$$
+
+基于此，得到条件速度场：
+
+$$
+u_t(x|x_1) = \frac{x_1 - (1 - \sigma_{\min})x}{1 - (1 - \sigma_{\min})t}
+$$
+
+
+
+
+损失函数：
+
+$$
+\mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t,q(x_1),p(x_0)} \left\| v_t(\psi_t(x_0)) - \big(x_1 - (1 - \sigma_{\min})x_0\big) \right\|^2
+$$
+
+
+
+
+
+## Diffusion路径
