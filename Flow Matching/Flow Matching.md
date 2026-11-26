@@ -16,7 +16,6 @@
 | $p_0(x)、p_1(x)$ | 初始时刻的粒子概率密度 && 接近真实数据概率密度 |
 
 
-
 1、**CNF（连续归一化流，Continuous Normalizing Flow）**：一种用神经网络参数化的连续时间模型，基于ODE、前推公式，将一个简单的先验分布（如标准高斯噪声）转化为复杂的数据分布（真实数据分布）。
 
 **2、ODE（常微分方程，Ordinary Differential Equation）**
