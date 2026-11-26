@@ -18,9 +18,7 @@
 
 
 ## 1、CNF && ODE
-CNF（连续归一化流，Continuous Normalizing Flow）是一种对速度场建模的连续时间模型，即$v_t(x)$。
-
-CNF通过ODE（常微分方程，Ordinary Differential Equation）定义一个流$\phi_t(x)$， ODE如下：
+CNF（连续归一化流，Continuous Normalizing Flow）是一种对速度场建模的连续时间模型，即$v_\theta(x; t)$，文中记为$v_t(x)$。CNF通过ODE（常微分方程，Ordinary Differential Equation）定义一个流$\phi_t(x)$， ODE如下：
 
 $$
 \begin{align}
@@ -35,7 +33,7 @@ $$
 
 等式2：当时刻$t$为$0$、粒子初始位置为$x$时，流是粒子的初始位置；
 
-得到CNF对$v_t(x)$建模后，基于上述方程，只要步长足够小、求解器精度足够高，采用如下的步骤，即可得到一个近似从真实数据分布中采样的数据：
+基于ODE，当步长足够小、求解器精度足够高时，采用如下的步骤，即可得到一个近似从真实数据分布中采样的数据：
 
 - 从先验分布采样：从标准高斯分布中随机抽取一个纯噪声 $x_0∼N(0,I)$；
 - 送入 ODE 求解器：将$x_0$作为初始状态（t=0），利用训练好的神经网络$v_t(x)$作为导数，通过数值积分（如论文使用的 dopri5 自适应求解器，或简单的欧拉法、中点法）沿着时间$t$从0积分到1；

@@ -14,9 +14,10 @@ $$
 
 $$
 \begin{aligned}
-x_{0:T} = (x_0, x_1, ..., x_T)
+& \quad x_{0:T} = (x_0, x_1, ..., x_T)
 \\
-p(x_T) = N(x_T; 0,I)
+\\
+& \quad p(x_T) = N(x_T; 0,I)
 \end{aligned}
 $$
 
