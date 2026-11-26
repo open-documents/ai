@@ -3,9 +3,7 @@
 
 本文介绍生成模型中的一种重要范式：流匹配。
 # 一、前置知识
-本章介绍前置知识 CNF（对应论文第2章），包含ODE公式、push-forward公式。
-
-首先，定义符号：
+本章介绍前置知识 CNF，包含ODE公式、push-forward公式。首先，定义符号：
 
 | 符号 | 含义 |
 | :--- | :--- |
@@ -18,8 +16,9 @@
 | $p_0(x)、p_1(x)$ | 初始时刻的粒子概率密度 && 接近真实数据概率密度 |
 
 
+1、CNF（连续归一化流，Continuous Normalizing Flow）：一种用神经网络参数化的连续时间模型，基于ODE、前推公式，将一个简单的先验分布（如标准高斯噪声）转化为复杂的数据分布（真实数据分布）。
 
-**1、ODE（常微分方程，ordinary differential equation）**
+**2、ODE（常微分方程，Ordinary Differential Equation）**
 
 $$
 \begin{align}
@@ -35,9 +34,7 @@ $$
 等式2：当时刻$t$为$0$、粒子初始位置为$x$时，流是粒子的初始位置；
 
 
-
-
-**2、push-forward（前推）公式**
+**3、push-forward（前推）公式**
 
 $$
 \begin{align}
@@ -46,8 +43,6 @@ p_t &= [\phi_t]_* p_0   \\
 [\phi_t]_* p_0(x) &= p_0(\phi_t^{-1}(x)) \det \left[ \frac{\partial \phi_t^{-1}}{\partial x}(x) \right]
 \end{align}
 $$
-
-
 等式3：前推公式。可以理解为，初始概率密度经过流$\phi_t(x)$后的概率密度；
 
 等式4：已知初始时刻粒子的概率密度分布解析式 $p_0(x)$、流$\phi_t(x)$，给定$t$时刻粒子位置$x$，计算$t$时刻粒子的概率密度分布；
