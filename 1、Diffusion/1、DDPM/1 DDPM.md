@@ -90,6 +90,7 @@ $$
 \begin{aligned}
 L
 &= \int q_\theta(x_0)logp(x_0)dx_0   \\
-&= \int q_\theta(x_0) \cdot log[\int q(x_{1:T} | x_0)p(x_T) \cdot \prod_{t=1}^{T}\frac{p(x_{t-1}|x_{t})}{q(x_t|x_{t-1})}dx_{1:T}]dx_0
-\end{aligned}
+&= \int q_\theta(x_0) \cdot log[\int q(x_{1:T} | x_0)p(x_T) \cdot \prod_{t=1}^{T}\frac{p(x_{t-1}|x_{t})}{q(x_t|x_{t-1})}dx_{1:T}]dx_0  \\
+&\geq \int q(x_{0:T})\cdot log[p(x_T)\frac{p(x_{t-1}|x_{t})}{q(x_t|x_{t-1})}]d(x_{0:T}) = K
+\end{aligned}  \\
 $$
