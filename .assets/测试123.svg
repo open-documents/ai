@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080.5" viewBox="0 -80.5 1600 1080.5" data-idraw-canvas="1" data-idraw-version="1">
+  <defs>
+    <marker id="idraw-arrow-8f94a3-9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="strokeWidth" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8f94a3"/>
+    </marker>
+    <marker id="idraw-arrow-start-8f94a3-9" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="9" markerHeight="9" markerUnits="strokeWidth" orient="auto">
+      <path d="M10,0 L0,5 L10,10 z" fill="#8f94a3"/>
+    </marker>
+  </defs>
+  <rect data-idraw-page="1" x="0" y="-80.5" width="1600" height="1080.5" fill="#ffffff"/>
+  <g data-idraw-layer="edges">
+    <path data-idraw-edge="e1" data-idraw-from-node="n1" data-idraw-from-anchor="s" data-idraw-to-node="" data-idraw-to-anchor="auto" data-idraw-to-x="675.5" data-idraw-to-y="84.5" data-idraw-routing="orthogonal" data-idraw-arrow="end" data-idraw-arrow-style="solid" data-idraw-arrow-size="9" d="M671,11.5 L671,84.5 L695.5,84.5 L675.5,84.5" fill="none" stroke="#8f94a3" stroke-width="1.5" marker-end="url(#idraw-arrow-8f94a3-9)"/>
+  </g>
+  <g data-idraw-layer="nodes">
+    <g data-idraw-node="n1" data-idraw-shape="rect" data-idraw-x="609.5" data-idraw-y="-40.5" data-idraw-w="123" data-idraw-h="52" data-idraw-align="center" data-idraw-valign="middle" data-idraw-radius="8" transform="translate(609.5 -40.5)">
+      <rect x="0" y="0" width="123" height="52" fill="none" stroke="#8f94a3" stroke-width="1.5"/>
+      <text data-idraw-text="" x="0" y="0" fill="none"></text>
+    </g>
+  </g>
+</svg>
