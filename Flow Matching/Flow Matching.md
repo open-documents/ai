@@ -18,7 +18,9 @@
 
 
 ## 1、CNF && ODE
-CNF（连续归一化流，Continuous Normalizing Flow）是一种对速度场建模的连续时间模型，CNF通过ODE（常微分方程，Ordinary Differential Equation）来定义一个流$\phi_t(x)$。ODE如下：
+CNF（连续归一化流，Continuous Normalizing Flow）是一种对速度场建模的连续时间模型，即$v_t(x)$。
+
+CNF通过ODE（常微分方程，Ordinary Differential Equation）定义一个流$\phi_t(x)$， ODE如下：
 
 $$
 \begin{align}
