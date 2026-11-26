@@ -1,6 +1,3 @@
-
-
-
 本文介绍生成模型中的一种重要范式：流匹配。
 # 一、前置知识
 本章介绍前置知识 CNF，包含ODE公式、push-forward公式。首先，定义符号：
@@ -14,8 +11,6 @@
 | $v_t(x)$ | 速度场/向量场（vector field，VF）：定义某时刻位置变化，即初始位置为 $x$ 的粒子，在时刻$t$时的速度（大小和方向）。 |
 | $p_t(x)$ | 概率密度路径：时刻 $t$ 时的粒子概率密度。 |
 | $p_0(x)、p_1(x)$ | 初始时刻的粒子概率密度 && 接近真实数据概率密度 |
-
-
 
 ## 1、CNF && ODE
 CNF（连续归一化流，Continuous Normalizing Flow）是一种对速度场建模的连续时间模型，即$v_\theta(x; t)$，文中记为$v_t(x)$。CNF通过ODE（常微分方程，Ordinary Differential Equation）定义一个流$\phi_t(x)$， ODE如下：
