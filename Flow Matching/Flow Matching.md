@@ -18,9 +18,7 @@
 
 
 ## 1、CNF && ODE
-CNF（连续归一化流，Continuous Normalizing Flow）是一种用神经网络参数化的连续时间模型，基于ODE、前推公式，将一个简单的先验分布（如标准高斯噪声）转化为复杂的数据分布（真实数据分布）。
-
-2、ODE（常微分方程，Ordinary Differential Equation）
+CNF（连续归一化流，Continuous Normalizing Flow）是一种对速度场建模的连续时间模型，CNF通过ODE（常微分方程，Ordinary Differential Equation）来定义一个流$\phi_t(x)$。ODE如下：
 
 $$
 \begin{align}
