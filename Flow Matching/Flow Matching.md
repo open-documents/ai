@@ -61,7 +61,9 @@ $$
 流匹配（Flow matching，FM）的目标是通过网络拟合一个边缘速度场，来满足上述要求，损失函数为：
 
 $$
-\mathcal{L}_{\text{FM}}(\theta) = \mathbb{E}_{t, p_t(x)} \|v_t(x) - u_t(x)\|^2 \tag{5}
+\begin{align}
+\mathcal{L}_{\text{FM}}(\theta) = \mathbb{E}_{t, p_t(x)} \|v_t(x) - u_t(x)\|^2
+\end{align}
 $$
 
 
@@ -74,36 +76,13 @@ $$
 因此，论文进一步提出了条件流匹配损失函数：
 
 $$
+\begin{align}
 \mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t, q(x_1), p_t(x|x_1)} \|v_t(x) - u_t(x|x_1)\|^2
+\end{align}
 $$
 论文证明（引理2）：假设对于所有的$x \in \mathbb{R}^d$和$t \in [0, 1]$，都有$p_t(x) > 0$，那么，在相差一个与$\theta$无关的常数的意义下，$\mathcal{L}_{\mathrm{CFM}}$和$\mathcal{L}_{\mathrm{FM}}$相等，因此$\nabla_\theta \mathcal{L}_{\mathrm{FM}}(\theta) = \nabla_\theta \mathcal{L}_{\mathrm{CFM}}(\theta)$。
 
 > 证明见附录中的“CFM和FM参数梯度一致性”。
-# 二、条件速度场 -> 边缘速度场
-在引出论文中的CFM损失函数前，先介绍设定条件概率密度$p_t(x|x_1)$，满足：
-
-- t = 0时：$p_0(x|x_1)=p(x)$；
-- t = 1时：粒子集中在中心为$x_1$的一片极小区域，如$p_1(x|x_1) = \mathcal{N}(x|x_1, \sigma^2 I)$，其中标准差极小；
-
-那么，有：
-
-$$
-p_t(x) = \int p_t(x|x_1)q(x_1)dx_1
-\\
-p_1(x) = \int p_1(x|x_1)q(x_1)dx_1 \approx q(x)
-$$
-
-
-
-进一步：
-
-$$
-u_t(x) = \int u_t(x|x_1) \frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1, \tag{8}
-$$
-
-即条件速度场能推出边缘速度场。
-
-
 
 # 三、构造路径
 构造仿射路径：
@@ -273,14 +252,14 @@ $$
 第一步：对边缘密度求时间导数。对$p_t(x)=\int p_t(x|x_1)q(x_1)dx_1p_t​(x)​$两边对时间$t$求导（假设）：
 
 $$
-\begin{aligned}
+\begin{align}
 \frac{\partial}{\partial t}p_t(x) 
-&=\frac{\partial}{\partial t}\int p_t(x|x_1)q(x_1)dx_1  \\
-&\overset{\text{乘以并除以 } p_t(x)}{=}\int \frac{\partial}{\partial t}p_t(x|x_1)q(x_1)dx_1       \quad   \quad 交换积分与求导顺序  \\           
-&= \int - \nabla \cdot \big( p_t(x|x_1) u_t(x|x_1) \big)q(x_1)dx_1     \quad   \quad  代入条件连续性方程  \\   
-&= -\nabla \cdot \left( \int p_t(x|x_1)u_t(x|x_1)q(x_1)dx_1 \right)   \\
-&= -\nabla \cdot \left( p_t(x) \int u_t(x|x_1)\frac{p_t(x|x_1)q(x_1)}{p_t(x)}dx_1 \right)   \quad       \quad 乘以并除以 p_t(x)
-\end{aligned}
+&= \frac{\partial}{\partial t}\int p_t(x|x_1)q(x_1)dx_1 \nonumber \\
+&= \int \frac{\partial}{\partial t}p_t(x|x_1)q(x_1)dx_1 && \scriptstyle\text{交换积分与求导顺序} \nonumber \\
+&= \int - \nabla \cdot \big( p_t(x|x_1) u_t(x|x_1) \big)q(x_1)dx_1 && \scriptstyle\text{代入条件连续性方程} \nonumber \\
+&= -\nabla \cdot \left( \int p_t(x|x_1)u_t(x|x_1)q(x_1)dx_1 \right)  && \scriptstyle\text{因为散度算子 ∇⋅ 是关于 x 的，与积分变量 x1​ 无关} \nonumber \\
+&= -\nabla \cdot \left( p_t(x) \int u_t(x|x_1)\frac{p_t(x|x_1)q(x_1)}{p_t(x)}dx_1 \right) && \scriptstyle\text{乘以并除以 } p_t(x) 
+\end{align}
 $$
 对比，即可得到：
 
