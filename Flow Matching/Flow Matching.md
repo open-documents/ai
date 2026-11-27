@@ -61,12 +61,12 @@ $$
 流匹配（Flow matching，FM）的目标是通过网络拟合一个边缘速度场，来满足上述要求，损失函数为：
 
 $$
-\mathcal{L}_{\text{FM}}(\theta) = \mathbb{E}_{t, p_t(x)} \|v_t(x) - u_t(x)\|^2, \tag{5}
+\mathcal{L}_{\text{FM}}(\theta) = \mathbb{E}_{t, p_t(x)} \|v_t(x) - u_t(x)\|^2 \tag{5}
 $$
 
 
 
-将该损失函数直接用于训练存在两个问题：
+如果将该损失函数直接用于训练，存在两个问题：
 
 - 无法抽样：因为没有$p_t(x)$的解析式；
 - 没有标签：因为没有速度场$u_t(x)$的解析式；
@@ -74,11 +74,11 @@ $$
 因此，论文进一步提出了条件流匹配损失函数：
 
 $$
-\mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t, q(x_1), p_t(x|x_1)} \|v_t(x) - u_t(x|x_1)\|^2,
+\mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t, q(x_1), p_t(x|x_1)} \|v_t(x) - u_t(x|x_1)\|^2
 $$
 论文证明（引理2）：假设对于所有的$x \in \mathbb{R}^d$和$t \in [0, 1]$，都有$p_t(x) > 0$，那么，在相差一个与$\theta$无关的常数的意义下，$\mathcal{L}_{\mathrm{CFM}}$和$\mathcal{L}_{\mathrm{FM}}$相等，因此$\nabla_\theta \mathcal{L}_{\mathrm{FM}}(\theta) = \nabla_\theta \mathcal{L}_{\mathrm{CFM}}(\theta)$。
 
-> 证明见附录中的“”。
+> 证明见附录中的“CFM和FM参数梯度一致性”。
 # 二、条件速度场 -> 边缘速度场
 在引出论文中的CFM损失函数前，先介绍设定条件概率密度$p_t(x|x_1)$，满足：
 
@@ -236,14 +236,36 @@ $$
 
 
 
-## 2、CFM和FM的参数梯度一致性
-1）FM
+## 2、CFM和FM参数梯度一致性
+
+首先，作后续推导会用到的前置推导：
+
+1）全概率公式：
+
+$$
+p_t(x) = \int p_t(x|x_1)q(x_1)dx_1
+$$
+2）
+
+）FM
 
 $$
 \mathcal{L}_{\text{FM}}(\theta) 
 = \mathbb{E}_{t, p_t(x)} \|v_t(x) - u_t(x)\|^2 
-= \mathbb{E}_{t, p_t(x)}\|v_t(x)\|^2 - 2\mathbb{E}_{t, p_t(x)}\langle v_t(x), u_t(x) \rangle + C
+= \mathbb{E}_{t, p_t(x)}\|v_t(x)\|^2 - 2\mathbb{E}_{t, p_t(x)}\langle v_t(x), u_t(x) \rangle + \mathbb{E}_{t, p_t(x)}\|u_t(x)\|^2 
 $$
 
-其中：
+
+
+$$
+\begin{aligned}
+\mathbb{E}_{p_t(x)}\|v_t(x)\|^2 &= \int \|v_t(x)\|^2 p_t(x) dx = \int \|v_t(x)\|^2 p_t(x|x_1) q(x_1) dx_1 dx = \mathbb{E}_{q(x_1), p_t(x|x_1)}\|v_t(x)\|^2  \\
+\mathbb{E}_{p_t(x)} \langle v_t(x), u_t(x) \rangle &= \int \left\langle v_t(x), \frac{\int u_t(x|x_1) p_t(x|x_1) q(x_1) dx_1}{p_t(x)} \right\rangle p_t(x) dx \\
+&= \int \left\langle v_t(x), \int u_t(x|x_1) p_t(x|x_1) q(x_1) dx_1 \right\rangle dx \\
+&= \int \langle v_t(x), u_t(x|x_1) \rangle p_t(x|x_1) q(x_1) dx_1 dx \\
+&= \mathbb{E}_{q(x_1), p_t(x|x_1)} \langle v_t(x), u_t(x|x_1) \rangle,
+\end{aligned}
+$$
+
+
 
