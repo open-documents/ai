@@ -239,7 +239,7 @@ $$
 连续性方程定义如下：
 
 $$
-\frac{d}{dt}p_t(x) + \mathrm{div}(p_t(x)v_t(x)) = 0
+\frac{d}{dt}p_t(x) + \nabla \cdot(p_t(x)v_t(x)) = 0
 $$
 
 其中：
@@ -258,7 +258,7 @@ $$
 条件路径：假设对于每个固定的数据点$x_1$​，都存在一个条件概率路径$p_t(x|x_1)$，并且它是由条件向量场$u_t(x|x_1)$生成的。据连续性方程，这满足：
 
 $$
-\frac{\partial}{\partial t} p_t(x|x_1) + div \big( p_t(x|x_1) u_t(x|x_1) \big) = 0
+\frac{\partial}{\partial t} p_t(x|x_1) + \nabla \cdot \big( p_t(x|x_1) u_t(x|x_1) \big) = 0
 $$
 
 边缘路径：我们的目标是边缘概率路径$p_t(x)=\int p_t(x|x_1)q(x_1)dx_1p_t​(x)$。
@@ -266,7 +266,7 @@ $$
 待求目标：我们要找一个边缘向量场$u_t(x)$，使得它生成$p_t(x)$。也就是说，它必须满足边缘的连续性方程：
 
 $$
-\frac{\partial}{\partial t} p_t(x) + div \big( p_t(x) u_t(x) \big) = 0
+\frac{\partial}{\partial t} p_t(x) + \nabla \cdot \big( p_t(x) u_t(x) \big) = 0
 $$
 2）推导
 
@@ -276,25 +276,19 @@ $$
 \begin{aligned}
 \frac{\partial}{\partial t}p_t(x) 
 &=\frac{\partial}{\partial t}\int p_t(x|x_1)q(x_1)dx_1  \\
-&=\int \frac{\partial}{\partial t}p_t(x|x_1)q(x_1)dx_1  \\           
-&= \int - \nabla \cdot \big( p_t(x|x_1) u_t(x|x_1) \big)q(x_1)dx_1     \\    积分与求导可以交换顺序
+&\overset{\text{乘以并除以 } p_t(x)}{=}\int \frac{\partial}{\partial t}p_t(x|x_1)q(x_1)dx_1       \quad   \quad 交换积分与求导顺序  \\           
+&= \int - \nabla \cdot \big( p_t(x|x_1) u_t(x|x_1) \big)q(x_1)dx_1     \quad   \quad  代入条件连续性方程  \\   
 &= -\nabla \cdot \left( \int p_t(x|x_1)u_t(x|x_1)q(x_1)dx_1 \right)   \\
 &= -\nabla \cdot \left( p_t(x) \int u_t(x|x_1)\frac{p_t(x|x_1)q(x_1)}{p_t(x)}dx_1 \right)   \quad       \quad 乘以并除以 p_t(x)
 \end{aligned}
 $$
-第二步：代入条件连续性方程。将前面提到的条件连续性方程代入上式：
+对比，即可得到：
 
 
 $$
-\begin{aligned}
-a
-\end{aligned}
+u_t(x) = \int u_t(x|x_1) \frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1
 $$
-把上式与边缘连续性方程 ∂∂tpt(x)=−∇⋅(pt(x)ut(x))∂t∂​pt​(x)=−∇⋅(pt​(x)ut​(x)) 对比，显然，括号里剩下的部分就是边缘向量场 ut(x)ut​(x)：
-ut(x)=∫ut(x∣x1)pt(x∣x1)q(x1)pt(x)dx1
-ut​(x)=∫ut​(x∣x1​)pt​(x)pt​(x∣x1​)q(x1​)​dx1​
 
-这就是公式 (8)。
 
 ## 3、CFM和FM参数梯度一致性
 
@@ -317,15 +311,23 @@ $$
 
 
 
+
+第二项：
 $$
 \begin{aligned}
-\mathbb{E}_{p_t(x)}\|v_t(x)\|^2 &= \int \|v_t(x)\|^2 p_t(x) dx = \int \|v_t(x)\|^2 p_t(x|x_1) q(x_1) dx_1 dx = \mathbb{E}_{q(x_1), p_t(x|x_1)}\|v_t(x)\|^2  \\
+\mathbb{E}_{t,p_t(x)}\|v_t(x)\|^2 &= \int \|v_t(x)\|^2 p_t(x) dx = \int \|v_t(x)\|^2 p_t(x|x_1) q(x_1) dx_1 dx = \mathbb{E}_{t,q(x_1), p_t(x|x_1)}\|v_t(x)\|^2  \\
+\end{aligned}
+$$
+
+
+
+第三项：
+
+$$
+\begin{aligned}
 \mathbb{E}_{p_t(x)} \langle v_t(x), u_t(x) \rangle &= \int \left\langle v_t(x), \frac{\int u_t(x|x_1) p_t(x|x_1) q(x_1) dx_1}{p_t(x)} \right\rangle p_t(x) dx \\
 &= \int \left\langle v_t(x), \int u_t(x|x_1) p_t(x|x_1) q(x_1) dx_1 \right\rangle dx \\
 &= \int \langle v_t(x), u_t(x|x_1) \rangle p_t(x|x_1) q(x_1) dx_1 dx \\
 &= \mathbb{E}_{q(x_1), p_t(x|x_1)} \langle v_t(x), u_t(x|x_1) \rangle,
 \end{aligned}
 $$
-
-
-
