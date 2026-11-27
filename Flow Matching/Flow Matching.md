@@ -234,9 +234,13 @@ $$
 
 
 
+
+
 ## 2、CFM和FM的参数梯度一致性
 1）FM
 
 $$
-\mathcal{L}_{\text{FM}}(\theta) = \mathbb{E}_{t, p_t(x)} \|v_t(x) - u_t(x)\|^2
+\mathcal{L}_{\text{FM}}(\theta) 
+= \mathbb{E}_{t, p_t(x)} \|v_t(x) - u_t(x)\|^2 
+= \mathbb{E}_{t, p_t(x)}\|v_t(x)\|^2 - 2\mathbb{E}_{t, p_t(x)}\langle v_t(x), u_t(x) \rangle + C
 $$
