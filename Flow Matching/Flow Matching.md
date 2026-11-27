@@ -275,8 +275,7 @@ $$
 $$
 \frac{\partial}{\partial t}p_t(x)=\frac{\partial}{\partial t}\int p_t(x|x_1)q(x_1)dx_1=\int \frac{\partial}{\partial t}p_t(x|x_1)q(x_1)dx_1
 $$
-第二步：代入条件连续性方程
-把前面提到的条件连续性方程$\partial$tpt(x∣x1)=−∇⋅(pt(x∣x1)ut(x∣x1))∂t∂​pt​(x∣x1​)=−∇⋅(pt​(x∣x1​)ut​(x∣x1​)) 代入上式：
+第二步：代入条件连续性方程。将前面提到的条件连续性方程$\partial$tpt(x∣x1)=−∇⋅(pt(x∣x1)ut(x∣x1))∂t∂​pt​(x∣x1​)=−∇⋅(pt​(x∣x1​)ut​(x∣x1​)) 代入上式：
 ∂∂tpt(x)=∫−∇⋅(pt(x∣x1)ut(x∣x1))q(x1)dx1
 
 因为散度算子 ∇⋅∇⋅ 是关于 xx 的，与积分变量 x1x1​ 无关，所以可以把积分和散度交换位置：
