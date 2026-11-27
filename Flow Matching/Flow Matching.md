@@ -53,7 +53,11 @@ $$
 
 # 二、FM && CFM损失函数
 
-针对传统训练方法（最大似然估计）需要多次模拟求解 ODE，计算量极大，CNF 难以训练，无法用于大规模图像生成的问题，论文提出了流匹配。具体而言，考虑概率密度路径满足：
+针对传统训练方法（最大似然估计）需要多次模拟求解 ODE，计算量极大，CNF 难以训练，无法用于大规模图像生成的问题，论文提出了流匹配。
+
+## 1、FM
+
+考虑概率密度路径满足：
 
 - t = 0时：$p_0(x)$是简单的概率密度，如标准正态分布；
 - t = 1时：$p_1(x)$接近真实数据概率密度；
@@ -68,6 +72,8 @@ $$
 
 
 
+
+## 2、CFM
 如果将该损失函数直接用于训练，存在两个问题：
 
 - 无法抽样：因为没有$p_t(x)$的解析式；
@@ -83,6 +89,13 @@ $$
 论文证明（引理2）：假设对于所有的$x \in \mathbb{R}^d$和$t \in [0, 1]$，都有$p_t(x) > 0$，那么，在相差一个与$\theta$无关的常数的意义下，$\mathcal{L}_{\mathrm{CFM}}$和$\mathcal{L}_{\mathrm{FM}}$相等，因此$\nabla_\theta \mathcal{L}_{\mathrm{FM}}(\theta) = \nabla_\theta \mathcal{L}_{\mathrm{CFM}}(\theta)$。
 
 > 证明见附录中的“CFM和FM参数梯度一致性”。
+
+## 3、重参数化
+
+
+$$
+\mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t, q(x_1), p(x_0)} \left\| v_t(\psi_t(x_0)) - \frac{d}{dt}\psi_t(x_0) \right\|^2
+$$
 
 # 三、构造路径
 构造仿射路径：
@@ -100,14 +113,6 @@ $$
 \quad
 u_t(x|x_1) = \frac{\sigma'_t(x_1)}{\sigma_t(x_1)} (x - \mu_t(x_1)) + \mu'_t(x_1)
 $$
-
-进一步，做重参数化，损失函数变为：
-
-$$
-\mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t, q(x_1), p(x_0)} \left\| v_t(\psi_t(x_0)) - \frac{d}{dt}\psi_t(x_0) \right\|^2
-$$
-
-
 
 ## OT路径
 构造仿射路径：
@@ -136,6 +141,12 @@ $$
 
 
 ## Diffusion路径
+
+
+# 四、生成
+
+
+
 
 
 # 附录
@@ -265,7 +276,9 @@ $$
 
 
 $$
+\begin{align}
 u_t(x) = \int u_t(x|x_1) \frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1
+\end{align}
 $$
 
 
@@ -304,7 +317,7 @@ $$
 
 $$
 \begin{aligned}
-\mathbb{E}_{p_t(x)} \langle v_t(x), u_t(x) \rangle &= \int \left\langle v_t(x), \frac{\int u_t(x|x_1) p_t(x|x_1) q(x_1) dx_1}{p_t(x)} \right\rangle p_t(x) dx \\
+\mathbb{E}_{p_t(x)} \langle v_t(x), u_t(x) \rangle &= \int \left\langle v_t(x), \frac{\int u_t(x|x_1) p_t(x|x_1) q(x_1) dx_1}{p_t(x)} \right\rangle p_t(x) dx   && \scriptstyle\text{代入}  \\
 &= \int \left\langle v_t(x), \int u_t(x|x_1) p_t(x|x_1) q(x_1) dx_1 \right\rangle dx \\
 &= \int \langle v_t(x), u_t(x|x_1) \rangle p_t(x|x_1) q(x_1) dx_1 dx \\
 &= \mathbb{E}_{q(x_1), p_t(x|x_1)} \langle v_t(x), u_t(x|x_1) \rangle,
