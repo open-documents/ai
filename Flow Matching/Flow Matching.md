@@ -244,3 +244,6 @@ $$
 = \mathbb{E}_{t, p_t(x)} \|v_t(x) - u_t(x)\|^2 
 = \mathbb{E}_{t, p_t(x)}\|v_t(x)\|^2 - 2\mathbb{E}_{t, p_t(x)}\langle v_t(x), u_t(x) \rangle + C
 $$
+
+其中：
+
