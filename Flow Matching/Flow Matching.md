@@ -270,27 +270,27 @@ $$
 $$
 2）推导
 
-第一步：对边缘密度求时间导数。对$p_t(x)=\int p_t(x|x_1)q(x_1)dx_1p_t​(x)​$两边对时间$t$求导（假设积分与求导可以交换顺序）：
+第一步：对边缘密度求时间导数。对$p_t(x)=\int p_t(x|x_1)q(x_1)dx_1p_t​(x)​$两边对时间$t$求导（假设）：
 
 $$
-\frac{\partial}{\partial t}p_t(x)=\frac{\partial}{\partial t}\int p_t(x|x_1)q(x_1)dx_1=\int \frac{\partial}{\partial t}p_t(x|x_1)q(x_1)dx_1
+\begin{aligned}
+\frac{\partial}{\partial t}p_t(x) 
+&=\frac{\partial}{\partial t}\int p_t(x|x_1)q(x_1)dx_1  \\
+&=\int \frac{\partial}{\partial t}p_t(x|x_1)q(x_1)dx_1  \\           
+&= \int - \nabla \cdot \big( p_t(x|x_1) u_t(x|x_1) \big)q(x_1)dx_1     \\    积分与求导可以交换顺序
+&= -\nabla \cdot \left( \int p_t(x|x_1)u_t(x|x_1)q(x_1)dx_1 \right)   \\
+&= -\nabla \cdot \left( p_t(x) \int u_t(x|x_1)\frac{p_t(x|x_1)q(x_1)}{p_t(x)}dx_1 \right)   \quad       \quad 乘以并除以 p_t(x)
+\end{aligned}
 $$
-第二步：代入条件连续性方程。将前面提到的条件连续性方程$\partial$tpt(x∣x1)=−∇⋅(pt(x∣x1)ut(x∣x1))∂t∂​pt​(x∣x1​)=−∇⋅(pt​(x∣x1​)ut​(x∣x1​)) 代入上式：
-∂∂tpt(x)=∫−∇⋅(pt(x∣x1)ut(x∣x1))q(x1)dx1
+第二步：代入条件连续性方程。将前面提到的条件连续性方程代入上式：
 
-因为散度算子 ∇⋅∇⋅ 是关于 xx 的，与积分变量 x1x1​ 无关，所以可以把积分和散度交换位置：
-∂∂tpt(x)=−∇⋅(∫pt(x∣x1)ut(x∣x1)q(x1)dx1)
-∂t∂​pt​(x)=−∇⋅(∫pt​(x∣x1​)ut​(x∣x1​)q(x1​)dx1​)
 
-第三步：凑出边缘连续性方程的形式
-边缘连续性方程是：−∇⋅(pt(x)ut(x))−∇⋅(pt​(x)ut​(x))。
-我们看看上面那个式子：−∇⋅(∫pt(x∣x1)ut(x∣x1)q(x1)dx1)−∇⋅(∫pt​(x∣x1​)ut​(x∣x1​)q(x1​)dx1​)。
-为了让这两个式子匹配，也就是让括号里的东西等于 pt(x)ut(x)pt​(x)ut​(x)，我们可以做一个恒等变形（乘以并除以 pt(x)pt​(x)）：
-=−∇⋅(pt(x)∫ut(x∣x1)pt(x∣x1)q(x1)pt(x)dx1)
-=−∇⋅(pt​(x)∫ut​(x∣x1​)pt​(x)pt​(x∣x1​)q(x1​)​dx1​)
-
-第四步：对比得出结论
-现在，把上式与边缘连续性方程 ∂∂tpt(x)=−∇⋅(pt(x)ut(x))∂t∂​pt​(x)=−∇⋅(pt​(x)ut​(x)) 对比，显然，括号里剩下的部分就是边缘向量场 ut(x)ut​(x)：
+$$
+\begin{aligned}
+a
+\end{aligned}
+$$
+把上式与边缘连续性方程 ∂∂tpt(x)=−∇⋅(pt(x)ut(x))∂t∂​pt​(x)=−∇⋅(pt​(x)ut​(x)) 对比，显然，括号里剩下的部分就是边缘向量场 ut(x)ut​(x)：
 ut(x)=∫ut(x∣x1)pt(x∣x1)q(x1)pt(x)dx1
 ut​(x)=∫ut​(x∣x1​)pt​(x)pt​(x∣x1​)q(x1​)​dx1​
 
