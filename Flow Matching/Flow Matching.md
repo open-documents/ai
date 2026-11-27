@@ -328,9 +328,9 @@ $$
 ## 4、
 $$
 \begin{aligned}
-\frac{d}{dt}\psi_t(x_0 ; x_1) &= u_t(\psi_t(x_0 ; x_1) | x_1) \\
-\psi_t(x_0 ; x_1) = \sigma_t(x_1)x_0 + \mu_t(x_1) \xRightarrow{对t求导}         \quad         \frac{d}{dt}\psi_t(x_0 ; x_1) &= \sigma_t'(x_1)x + \mu_t'(x_1) \\
-\Rightarrow u_t(\psi_t(x) | x_1) &= \sigma_t'(x_1)x + \mu_t'(x_1) \\
+\psi_t(x_0 ; x_1) &= \sigma_t(x_1)x_0 + \mu_t(x_1)  \\ 
+\xRightarrow{两边对t求导}         \ \         \frac{d}{dt}\psi_t(x_0 ; x_1) &= \sigma_t'(x_1)x_0 + \mu_t'(x_1)     \\
+\xRightarrow[\frac{d}{dt}\psi_t(x_0 ; x_1) = u_t(\psi_t(x_0 ; x_1) | x_1)]{ODE}                 \ \            u_t(\psi_t(x_0 ; x_1) | x_1) &= \sigma_t'(x_1)x_0 + \mu_t'(x_1) \\
 \text{令 } y &= \psi_t(x) \Rightarrow x = \psi_t^{-1}(y) = \frac{y - \mu_t(x_1)}{\sigma_t(x_1)} \\
 u_t(y | x_1) &= \sigma_t'(x_1) \left( \frac{y - \mu_t(x_1)}{\sigma_t(x_1)} \right) + \mu_t'(x_1) \\
 u_t(y | x_1) &= \frac{\sigma_t'(x_1)}{\sigma_t(x_1)} (y - \mu_t(x_1)) + \mu_t'(x_1) \\
