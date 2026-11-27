@@ -76,7 +76,9 @@ $$
 $$
 \mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t, q(x_1), p_t(x|x_1)} \|v_t(x) - u_t(x|x_1)\|^2,
 $$
-论文证明（引理2），假设对于所有的$x \in \mathbb{R}^d$。因此CFM和FM关于模型参数的梯度一致（论文Theorem 2），即优化CFM等同于优化FM，证明见附录中的“”。
+论文证明（引理2）：假设对于所有的$x \in \mathbb{R}^d$和$t \in [0, 1]$，都有$p_t(x) > 0$，那么，在相差一个与$\theta$无关的常数的意义下，$\mathcal{L}_{\mathrm{CFM}}$和$\mathcal{L}_{\mathrm{FM}}$相等，因此$\nabla_\theta \mathcal{L}_{\mathrm{FM}}(\theta) = \nabla_\theta \mathcal{L}_{\mathrm{CFM}}(\theta)$。
+
+> 证明见附录中的“”。
 # 二、条件速度场 -> 边缘速度场
 在引出论文中的CFM损失函数前，先介绍设定条件概率密度$p_t(x|x_1)$，满足：
 
