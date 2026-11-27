@@ -100,7 +100,7 @@ $$
 构造仿射路径：
 
 $$
-\psi_t(x) = \sigma_t(x_1)x + \mu_t(x_1)
+\psi_t(x_0) = \sigma_t(x_1)x_0 + \mu_t(x_1)
 $$
 
 由ODE公式有：
