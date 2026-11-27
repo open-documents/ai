@@ -1,4 +1,4 @@
-$本文介绍生成模型中的一种重要范式：流匹配。
+本文介绍生成模型中的一种重要范式：流匹配。
 # 一、前置知识
 本章介绍前置知识 CNF，包含ODE公式、push-forward公式。首先，定义符号：
 
@@ -89,7 +89,6 @@ $$
 论文证明（引理2）：假设对于所有的$x \in \mathbb{R}^d$和$t \in [0, 1]$，都有$p_t(x) > 0$，那么，在相差一个与$\theta$无关的常数的意义下，$\mathcal{L}_{\mathrm{CFM}}$和$\mathcal{L}_{\mathrm{FM}}$相等，因此$\nabla_\theta \mathcal{L}_{\mathrm{FM}}(\theta) = \nabla_\theta \mathcal{L}_{\mathrm{CFM}}(\theta)$。
 
 > 证明见附录中的“CFM和FM参数梯度一致性”。
-
 ## 3、重参数化
 
 
@@ -234,24 +233,24 @@ $$
 
 其中：
 
-- $p_t​(x)$：在时间$t$、位置$x$处的概率密度，可以想象成流体的密度；
+- $p_t(x)$：在时间$t$、位置$x$处的概率密度，可以想象成流体的密度；
 - $v_t(x)$：在时间$t$、位置$x$处的向量场，可以想象成流体的速度/流向；
 - $p_t(x)v_t(x)$：密度乘以速度，物理上叫“通量”（Flux），表示单位时间内有多少概率质量流过某个点；
 - $\frac{d}{dt}p_t(x)$：某一点密度随时间的变化率（局部变化）；
 - $div(… )$：散度（Divergence）。衡量空间中某一点的向量场是“发散”（散度为正），还是“汇聚”（散度为负）；
 
-连续性方程是CNF的数学底座。具体而言，如果$v_t​(x)$和$p_t(x)$满足这个连续性方程，那么数学上就能绝对保证：用$v_t(x)$驱动流$ϕ_t$移动初始噪声$p_0$时，$t$时刻的概率分布精确等于期望的$p_t(x)$。
+连续性方程是CNF的数学底座。具体而言，如果$v_t(x)$和$p_t(x)$满足这个连续性方程，那么数学上就能绝对保证：用$v_t(x)$驱动流$ϕ_t$移动初始噪声$p_0$时，$t$时刻的概率分布精确等于期望的$p_t(x)$。
 
 ## 3、条件速度场 -> 边缘速度场
 1）前置设定与已知条件
 
-条件路径：假设对于每个固定的数据点$x_1$​，都存在一个条件概率路径$p_t(x|x_1)$，并且它是由条件向量场$u_t(x|x_1)$生成的。据连续性方程，这满足：
+条件路径：假设对于每个固定的数据点$x_1$，都存在一个条件概率路径$p_t(x|x_1)$，并且它是由条件向量场$u_t(x|x_1)$生成的。据连续性方程，这满足：
 
 $$
 \frac{\partial}{\partial t} p_t(x|x_1) + \nabla \cdot \big( p_t(x|x_1) u_t(x|x_1) \big) = 0
 $$
 
-边缘路径：我们的目标是边缘概率路径$p_t(x)=\int p_t(x|x_1)q(x_1)dx_1p_t​(x)$。
+边缘路径：我们的目标是边缘概率路径$p_t(x)=\int p_t(x|x_1)q(x_1)dx_1p_t(x)$。
 
 待求目标：我们要找一个边缘向量场$u_t(x)$，使得它生成$p_t(x)$。也就是说，它必须满足边缘的连续性方程：
 
@@ -260,7 +259,7 @@ $$
 $$
 2）推导
 
-第一步：对边缘密度求时间导数。对$p_t(x)=\int p_t(x|x_1)q(x_1)dx_1p_t​(x)​$两边对时间$t$求导（假设）：
+第一步：对边缘密度求时间导数。对$p_t(x)=\int p_t(x|x_1)q(x_1)dx_1p_t(x)$两边对时间$t$求导（假设）：
 
 $$
 \begin{align}
@@ -268,7 +267,7 @@ $$
 &= \frac{\partial}{\partial t}\int p_t(x|x_1)q(x_1)dx_1 \nonumber \\
 &= \int \frac{\partial}{\partial t}p_t(x|x_1)q(x_1)dx_1 && \scriptstyle\text{交换积分与求导顺序} \nonumber \\
 &= \int - \nabla \cdot \big( p_t(x|x_1) u_t(x|x_1) \big)q(x_1)dx_1 && \scriptstyle\text{代入条件连续性方程} \nonumber \\
-&= -\nabla \cdot \left( \int p_t(x|x_1)u_t(x|x_1)q(x_1)dx_1 \right)  && \scriptstyle\text{因为散度算子 ∇⋅ 是关于 x 的，与积分变量 x1​ 无关} \nonumber \\
+&= -\nabla \cdot \left( \int p_t(x|x_1)u_t(x|x_1)q(x_1)dx_1 \right)  && \scriptstyle\text{因为散度算子 ∇⋅ 是关于 x 的，与积分变量 x1 无关} \nonumber \\
 &= -\nabla \cdot \left( p_t(x) \int u_t(x|x_1)\frac{p_t(x|x_1)q(x_1)}{p_t(x)}dx_1 \right) && \scriptstyle\text{乘以并除以 } p_t(x) 
 \end{align}
 $$
@@ -321,5 +320,21 @@ $$
 &= \int \left\langle v_t(x), \int u_t(x|x_1) p_t(x|x_1) q(x_1) dx_1 \right\rangle dx \\
 &= \int \langle v_t(x), u_t(x|x_1) \rangle p_t(x|x_1) q(x_1) dx_1 dx \\
 &= \mathbb{E}_{q(x_1), p_t(x|x_1)} \langle v_t(x), u_t(x|x_1) \rangle,
+\end{aligned}
+$$
+
+
+
+## 4、
+$$
+\begin{aligned}
+\psi_t(x) &= \sigma_t(x_1)x + \mu_t(x_1) \\
+\Rightarrow  \frac{d}{dt}\psi_t(x) &= u_t(\psi_t(x) | x_1) \\
+\frac{d}{dt}\psi_t(x) &= \sigma_t'(x_1)x + \mu_t'(x_1) \\
+\Rightarrow u_t(\psi_t(x) | x_1) &= \sigma_t'(x_1)x + \mu_t'(x_1) \\
+\text{令 } y &= \psi_t(x) \Rightarrow x = \psi_t^{-1}(y) = \frac{y - \mu_t(x_1)}{\sigma_t(x_1)} \\
+u_t(y | x_1) &= \sigma_t'(x_1) \left( \frac{y - \mu_t(x_1)}{\sigma_t(x_1)} \right) + \mu_t'(x_1) \\
+u_t(y | x_1) &= \frac{\sigma_t'(x_1)}{\sigma_t(x_1)} (y - \mu_t(x_1)) + \mu_t'(x_1) \\
+\therefore u_t(x | x_1) &= \frac{\sigma_t'(x_1)}{\sigma_t(x_1)} (x - \mu_t(x_1)) + \mu_t'(x_1)
 \end{aligned}
 $$
